@@ -1,0 +1,12 @@
+CREATE DATABASE bd_loja;
+
+CREATE TABLE tb_produtos(
+	id INTEGER AUTO_INCREMENT PRIMARY KEY
+	,nome VARCHAR (255)
+	,proco DECIMAL (10,2)
+);
+
+INSERT INTO tb_produtos (nome, preco)
+VALUES ('Caneta',1.80);
+INSERT INTO tb_produtos (nome, preco)
+VALUES ('Mochila',6.80);
