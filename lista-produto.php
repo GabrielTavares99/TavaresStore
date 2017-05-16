@@ -28,7 +28,13 @@
 		<tr>
 			<td><?= $produto['nome']?></td>
 			<td><?= $produto['preco'] ?></td>
-			<td><a href="remove-produto.php?id=<?=$produto['id']?>" class="btn btn-danger"> remover </a></td>
+			<td><?= substr($produto['descricao'],0,35); ?></td>
+			<td>
+				<form action="remove-produto.php" method="POST">
+					<input type="hidden" name="id" value="<?=$produto["id"]?>">
+					<input type="submit" value="Remover" class="btn btn-danger">		
+				</form>
+			</td>
 		</tr>
 		<?php 
 			endforeach;
