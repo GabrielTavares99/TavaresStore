@@ -1,4 +1,10 @@
-<?php include("cabecalho.php"); ?>
+<?php 
+	include("cabecalho.php");
+	include("conecta.php");
+	include("banco-categoria.php");
+
+
+ ?>
 			<h1>Formulário de Cadastro</h1>
 			<form action="adiciona-produto.php" method="POST">
 
@@ -10,6 +16,27 @@
 					<tr>
 						<td>Preço:</td>
 						<td><input class="form-control" type="number" name="preco"></td>
+					</tr>
+					<tr>
+						<td>Categoria:</td>
+						<td>
+							<select class="form-control"  name="categoria_id">
+								<?php 
+									foreach (listaCategorias($conexao) as $categoria) :
+								 ?>
+										<option value="<?= $categoria['id'] ?>"><?=$categoria["nome"]?>
+										</option>
+								<?php 
+									endforeach;
+								 ?>
+								 	</select>
+						 </td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>
+							<input type="checkbox" name="usado"> Usado	
+						</td>
 					</tr>
 					<tr>
 						<td>Descrição</td>

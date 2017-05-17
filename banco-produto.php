@@ -1,7 +1,7 @@
 <?php 
 	function listaProduto($conexao){
 		$produtos = array();
-		$consulta = mysqli_query($conexao,"SELECT * FROM tb_produtos");
+		$consulta = mysqli_query($conexao,"SELECT p.*,c.nome AS categoria_nome FROM tb_produtos AS p JOIN tb_categorias AS c ON p.categoria_id = c.id");
 		while ($produto = mysqli_fetch_assoc($consulta)) {
 			array_push($produtos,$produto);
 		}
@@ -9,9 +9,9 @@
 		return $produtos;
 	}
 
-		function insereProduto($conexao,$nome,$preco,$descricao){
+		function insereProduto($conexao,$nome,$preco,$descricao, $categoria_id, $usado){
 
-		$query = "INSERT INTO tb_produtos (nome,preco,descricao) VALUES ('{$nome}','{$preco}','{$descricao}')";
+		$query = "INSERT INTO tb_produtos (nome,preco,descricao,categoria_id,usado) VALUES ('{$nome}',{$preco},'{$descricao}',{$categoria_id},{$usado})";
 
 		$resultadoDaInsercao = false;
 
