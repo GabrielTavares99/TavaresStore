@@ -6,16 +6,18 @@ CREATE TABLE tb_produtos(
 	,preco DECIMAL (10,2)
 	,descricao TEXT
 	,categoria_id INTEGER
-	,usado BOOLEAN DEFAULT 0
+	,usado BOOLEAN DEFAULT FALSE
 );
+
 CREATE TABLE tb_categorias(
 	id INTEGER AUTO_INCREMENT PRIMARY KEY
-	,nome VARCHAR (255)
+	,nome NVARCHAR (255)
 );
 
 INSERT INTO tb_produtos (nome, preco)
 VALUES ('Caneta',1.80);
 
-INSERT INTO tb_categorias (nome) VALUES ("Brinquedo"),("Aliemento"),("Eletrônicos");
+INSERT INTO tb_categorias (nome) 
+VALUES ("Brinquedo"),("Aliemento"),("Eletrônicos");
 
 ALTER TABLE tb_produtos ADD COLUMN categoria_id INTEGER FOREIGN KEY REFERENCES tb_categorias(id);
