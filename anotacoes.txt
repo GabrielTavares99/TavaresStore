@@ -1,0 +1,8 @@
+Para pegar item na página
+document
+
+document.querySelector("id");
+
+var titulo = document.querySelector("id");
+
+titulo.textContent = "Gabriel";
