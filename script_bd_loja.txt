@@ -9,15 +9,13 @@ CREATE TABLE tb_produtos(
 	,usado BOOLEAN DEFAULT FALSE
 );
 
+ALTER TABLE tb_produtos ADD CONSTRAINT categoria_id FOREIGN KEY(id) REFERENCES tb_categorias(id)
+
 CREATE TABLE tb_categorias(
 	id INTEGER AUTO_INCREMENT PRIMARY KEY
 	,nome NVARCHAR (255)
 );
 
-INSERT INTO tb_produtos (nome, preco)
-VALUES ('Caneta',1.80);
-
 INSERT INTO tb_categorias (nome) 
-VALUES ("Brinquedo"),("Aliemento"),("Eletrônicos");
+VALUES ("Brinquedo"),("Alimento"),("Eletrônicos");
 
-ALTER TABLE tb_produtos ADD COLUMN categoria_id INTEGER FOREIGN KEY REFERENCES tb_categorias(id);
