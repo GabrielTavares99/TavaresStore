@@ -1,18 +1,20 @@
 CREATE DATABASE bd_loja;
 
+CREATE TABLE tb_categorias(
+	id INTEGER AUTO_INCREMENT PRIMARY KEY
+	,nome NVARCHAR (255)
+);
+
 CREATE TABLE tb_produtos(
 	id INTEGER AUTO_INCREMENT PRIMARY KEY
 	,nome VARCHAR (255)
 	,preco DECIMAL (10,2)
 	,descricao TEXT
-	,categoria_id INTEGER
+	,categoria_id INTEGER FOREIGN KEY REFERENCES tb_categorias(id)
 	,usado BOOLEAN DEFAULT FALSE
 );
 
-CREATE TABLE tb_categorias(
-	id INTEGER AUTO_INCREMENT PRIMARY KEY
-	,nome NVARCHAR (255)
-);
+
 
 INSERT INTO tb_produtos (nome, preco)
 VALUES ('Caneta',1.80);
@@ -20,4 +22,4 @@ VALUES ('Caneta',1.80);
 INSERT INTO tb_categorias (nome) 
 VALUES ("Brinquedo"),("Aliemento"),("Eletrônicos");
 
-ALTER TABLE tb_produtos ADD COLUMN categoria_id INTEGER FOREIGN KEY REFERENCES tb_categorias(id);
+ALTER TABLE tb_produtos ADD CONSTRAINT categoria_id FOREIGN KEY (id) REFERENCES tb_categorias(id);
