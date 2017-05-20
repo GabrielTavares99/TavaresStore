@@ -1,11 +1,16 @@
 CREATE DATABASE bd_loja;
 
+CREATE TABLE tb_categorias(
+	id INTEGER AUTO_INCREMENT PRIMARY KEY
+	,nome NVARCHAR (255)
+);
+
 CREATE TABLE tb_produtos(
 	id INTEGER AUTO_INCREMENT PRIMARY KEY
 	,nome VARCHAR (255)
 	,preco DECIMAL (10,2)
 	,descricao TEXT
-	,categoria_id INTEGER
+	,categoria_id INTEGER FOREIGN KEY REFERENCES tb_categorias(id)
 	,usado BOOLEAN DEFAULT FALSE
 );
 
@@ -27,4 +32,3 @@ VALUES ('gabriel@ig.com','827ccb0eea8a706c4c34a16891f84e7b');
 
 INSERT INTO tb_categorias (nome) 
 VALUES ("Brinquedo"),("Alimento"),("Eletrônicos");
-
