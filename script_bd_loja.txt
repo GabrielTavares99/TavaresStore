@@ -14,8 +14,6 @@ CREATE TABLE tb_produtos(
 	,usado BOOLEAN DEFAULT FALSE
 );
 
-ALTER TABLE tb_produtos ADD CONSTRAINT categoria_id FOREIGN KEY(id) REFERENCES tb_categorias(id)
-
 CREATE TABLE tb_categorias(
 	id INTEGER AUTO_INCREMENT PRIMARY KEY
 	,nome NVARCHAR (255)
@@ -27,8 +25,5 @@ CREATE TABLE tb_usuarios(
 	,senha VARCHAR (255)
 );
 
-INSERT INTO tb_usuarios (email, senha) 
-VALUES ('gabriel@ig.com','827ccb0eea8a706c4c34a16891f84e7b');
+ALTER TABLE tb_produtos ADD CONSTRAINT categoria_id FOREIGN KEY (id) REFERENCES tb_categorias(id);
 
-INSERT INTO tb_categorias (nome) 
-VALUES ("Brinquedo"),("Alimento"),("Eletrônicos");
