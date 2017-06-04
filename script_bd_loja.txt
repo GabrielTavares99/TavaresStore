@@ -16,6 +16,15 @@ CREATE TABLE tb_categorias(
 	,nome NVARCHAR (255)
 );
 
+CREATE TABLE tb_usuarios(
+	id INTEGER AUTO_INCREMENT PRIMARY KEY
+	,email VARCHAR (255)
+	,senha VARCHAR (255)
+);
+
+INSERT INTO tb_usuarios (email, senha) 
+VALUES ('gabriel@ig.com','827ccb0eea8a706c4c34a16891f84e7b');
+
 INSERT INTO tb_categorias (nome) 
 VALUES ("Brinquedo"),("Alimento"),("Eletrônicos");
 
