@@ -4,13 +4,21 @@
 		<?php 
 			if (isset($_GET['logado']) && $_GET['logado'] == 1) :
 		?>
-			<p class="alert-success">Logado</p>
+			<!--<p class="alert-success">Logado</p>-->
 		<?php 
-			else :
+			elseif(isset($_GET['logado']) && $_GET['logado']==0) :
 		?>
-			<p class="alert-danger">Não cadastrado</p>
+			<p class="alert-danger">Usuário não encotrado ou incorreto!</p>
 		<?php 
 			endif
+		?>
+		
+		<?php 
+			if (isset($_COOKIE['usuario_logado'])) :
+		?>
+			<p class="alert-success">Você está logado como <?= $_COOKIE['usuario_logado'] ?></p>
+		<?php 
+			else :
 		?>
 			<form method="POST" action="login.php" class="form">
 				<h2>Login</h2>
@@ -28,6 +36,7 @@
 					</tr>
 				</table>
 			</form>
+		<?php endif ?>
 <?php include("rodape.php"); ?>
 
 <script src="principal.js"></script>
