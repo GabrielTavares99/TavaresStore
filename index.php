@@ -1,12 +1,18 @@
-<?php include("cabecalho.php"); ?>
-			<h1 id="titulo">Seja Bem-Vindo!</h1>
+<?php 
+	include("cabecalho.php");
+	include("logica-usuario.php");
+?>
+
+		<h1 id="titulo">Seja Bem-Vindo!</h1>
 
 		<?php 
-			if (isset($_GET['logado']) && $_GET['logado'] == 1) :
+			if (isset($_GET["falha"])) :
 		?>
-			<!--<p class="alert-success">Logado</p>-->
-		<?php 
-			elseif(isset($_GET['logado']) && $_GET['logado']==0) :
+			<p class="alert-danger">Você precisa estar logado!</p>
+		<?php		
+			endif;
+
+			if( isset($_GET['logado']) && $_GET['logado']==0 ) :
 		?>
 			<p class="alert-danger">Usuário não encotrado ou incorreto!</p>
 		<?php 
@@ -14,7 +20,7 @@
 		?>
 		
 		<?php 
-			if (isset($_COOKIE['usuario_logado'])) :
+			if (usuarioEstaLogado()) :
 		?>
 			<p class="alert-success">Você está logado como <?= $_COOKIE['usuario_logado'] ?></p>
 		<?php 
@@ -38,5 +44,5 @@
 			</form>
 		<?php endif ?>
 <?php include("rodape.php"); ?>
-
+<!--
 <script src="principal.js"></script>

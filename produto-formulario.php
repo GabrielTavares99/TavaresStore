@@ -2,7 +2,12 @@
 	include("cabecalho.php");
 	include("conecta.php");
 	include("banco-categoria.php");
+	include("logica-usuario.php");
 
+	if (!usuarioEstaLogado()) {
+		header("Location:index.php?falha=1");
+		die();
+	}
 
  ?>
 			<h1>Formulário de Cadastro</h1>

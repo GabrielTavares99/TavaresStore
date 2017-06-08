@@ -1,9 +1,16 @@
 <?php 
 	include("cabecalho.php"); 
 	include("banco-produto.php");
+
 ?>
 
 	<?php 
+
+		if (!isset($_COOKIE["usuario_logado"])) {
+			header("Location: index.php?falha=1")
+			die();
+		}
+
 		$nome = $_POST["nome"];
 		$preco = $_POST["preco"];
 		$descricao = $_POST["descricao"];
