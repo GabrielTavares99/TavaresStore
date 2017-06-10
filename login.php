@@ -15,4 +15,4 @@
 		header("Location: index.php?logado=1");
 		//var_dump($usuario);
 	}
-	die();
+	
