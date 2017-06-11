@@ -5,29 +5,13 @@
 
 		<h1 id="titulo">Seja Bem-Vindo!</h1>
 
-		<?php 
-			if (isset($_GET["logout"]) && $_GET["logout"] == 1) :
-		?>
-			<p class="alert-success">Deslogado com sucesso! Sentirei saudade :´(</p>
-		<?php
-			endif;
-			if (isset($_GET["falha"])) :
-		?>
-			<p class="alert-danger">Você precisa estar logado!</p>
-		<?php		
-			endif;
 
-			if( isset($_GET['logado']) && $_GET['logado']==0 ) :
-		?>
-			<p class="alert-danger">Usuário não encotrado ou incorreto!</p>
+
 		<?php 
-			endif
-		?>
-		
-		<?php 
+
 			if (usuarioEstaLogado()) :
 		?>
-			<p class="alert-success">Você está logado como <?= usuarioLogado() ?></p>
+			<!--<p class="alert-success">Você está logado como <?= usuarioLogado() ?></p>-->
 			<a href="logout.php">Deslogar</a>
 		<?php 
 			else :

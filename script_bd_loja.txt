@@ -14,9 +14,10 @@ CREATE TABLE tb_produtos(
 	,usado BOOLEAN DEFAULT FALSE
 );
 
+
 CREATE TABLE tb_categorias(
 	id INTEGER AUTO_INCREMENT PRIMARY KEY
-	,nome NVARCHAR (255)
+	,nome VARCHAR (255)
 );
 
 CREATE TABLE tb_usuarios(

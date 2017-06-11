@@ -1,26 +1,30 @@
 <?php 
 
 	include("cabecalho.php");
-
 	include("conecta.php");
-
 	include("banco-produto.php");
-
+	include("logica-usuario.php");
 
 	$produtos = listaProduto($conexao);
-
 	$cont_linhas = 1;
 
 ?>
 
 <?php 
-	if (array_key_exists("removido", $_GET) && $_GET["removido"]==true) :
+	//if (array_key_exists("removido", $_GET) && $_GET["removido"]==true) :
+	if (isset($_SESSION["success"])) :
 ?>
-		<p class="alert-success">Produto removido com sucesso.</p>
+		<p class="alert-success"><?= $_SESSION["success"] ?></p>
 <?php 
-	endif
+	unset($_SESSION["success"]);
+	endif;
+	if (isset($_SESSION["danger"])) :
 ?>
-
+		<p class="alert-danger"><?= $_SESSION["danger"] ?></p>
+	<?php
+		unset($_SESSION["danger"]);
+	endif;
+	?>
 	<table class="table table-bordered table-hover">
 		<thead class="thead">
 			<tr>
@@ -41,7 +45,8 @@
 		<tr>
 			<th scope="row">
 				<?php 
-					echo $cont_linhas;
+					echo $produto["id"];
+					//echo $cont_linhas;
 					$cont_linhas+=1;
 				?>
 			</td>

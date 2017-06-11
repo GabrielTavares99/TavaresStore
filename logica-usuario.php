@@ -3,7 +3,7 @@
 session_start();
 function verificaUsuario(){
 	if (!usuarioEstaLogado()) {
-		header("Location: index.php?falha=1");
+		header("Location: index.php");
 	}
 }
 

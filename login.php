@@ -9,10 +9,12 @@
 	$usuario = buscarUsuario($conexao, $email, $senha);
 
 	if ($usuario == null) {
-		header("Location: index.php?logado=0");
+		$_SESSION["danger"] = "Login ou Senha inválidos.";
+		header("Location: index.php");
 	}else {
 		logaUsuario($email);
-		header("Location: index.php?logado=1");
+		$_SESSION["success"] = "Usuário logado com sucesso!";
+		header("Location: index.php");
 		//var_dump($usuario);
 	}
 	

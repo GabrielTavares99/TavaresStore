@@ -1,18 +1,19 @@
 <?php 
+
 	include("cabecalho.php");
 	include("conecta.php");
 	include("banco-categoria.php");
 	include("logica-usuario.php");
 
 	if (!usuarioEstaLogado()) {
-		header("Location:index.php?falha=1");
+		$_SESSION["danger"] = "Você precisa estar logado para acessar essa funcionalidade.";
+		header("Location:index.php");
 		die();
 	}
 
  ?>
 			<h1>Formulário de Cadastro</h1>
 			<form action="adiciona-produto.php" method="POST">
-
 				<table class="table">
 					<tr>
 						<td>Nome:</td>
@@ -29,18 +30,17 @@
 								<?php 
 									foreach (listaCategorias($conexao) as $categoria) :
 								 ?>
-										<option value="<?= $categoria['id'] ?>"><?=$categoria["nome"]?>
-										</option>
+										<option value="<?= $categoria["id"] ?>"> <?=$categoria["nome"]?> </option>
 								<?php 
 									endforeach;
-								 ?>
-								 	</select>
+								?>
+								 </select>
 						 </td>
 					</tr>
 					<tr>
-						<td></td>
+						<td>Status</td>
 						<td>
-							<input type="checkbox" name="usado"> Usado	
+							<input type="checkbox" name="usado"> Usado?	
 						</td>
 					</tr>
 					<tr>

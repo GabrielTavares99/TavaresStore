@@ -1,48 +1,31 @@
 <?php 
-	include("cabecalho.php"); 
 	include("banco-produto.php");
+	include("logica-usuario.php");
 
-?>
+	if (!usuarioEstaLogado()) {
+		header("Location: index.php");
+		die();
+	}
 
-	<?php 
+	$nome = $_POST["nome"];
+	$preco = $_POST["preco"];
+	$descricao = $_POST["descricao"];
+	$categoria_id = $_POST["categoria_id"];
+	
+	if (array_key_exists("usado", $_POST)) {
+		$usado = 1;
+	}else{
+		$usado = 0;
+	}
 
-		if (!isset($_COOKIE["usuario_logado"])) {
-			header("Location: index.php?falha=1")
-			die();
-		}
+	include("conecta.php");
+	if (insereProduto($conexao,$nome,$preco, $descricao, $categoria_id, $usado)) {
+		$_SESSION["success"] = "Adicionado com sucesso!"; 
+	}else{
+		$msgErro = mysqli_error($conexao);
+		$_SESSION["danger"] = "Não foi possível adicionar! ".$msgErro;
+	}
+	mysqli_close($conexao);
 
-		$nome = $_POST["nome"];
-		$preco = $_POST["preco"];
-		$descricao = $_POST["descricao"];
-		$categoria_id = $_POST["categoria_id"];
-		
-		if (array_key_exists('usado', $_POST)) {
-			$usado = "true";
-		}else{
-			$usado = "false";
-		}
-
-		include("conecta.php");
-
-
-		if (insereProduto($conexao,$nome,$preco, $descricao, $categoria_id, $usado)) {
-	?>
-					<p class="text-success">
-						Produto <?= $nome ?>, <?=$preco?>,<?=$descricao?> adicionado com sucesso!
-					</p>
-	<?php 
-		}else{
-			?>
-			<?php $msg = mysqli_error($conexao); ?>
-					<p class="text-danger">
-						Produto <?= $nome ?>, não foi adicionado! <?= $msg; ?>
-					</p>
-			<?php
-		}
-		
-
-		mysqli_close($conexao);
-	 ?>
-
-
-<?php include("rodape.php"); ?>
+	echo $msgErro;
+	header("Location:lista-produto.php");

@@ -2,5 +2,7 @@
 
 	include("logica-usuario.php");
 	logout();
-	header("Location: index.php?logout=1");
-	die();
+	session_start();
+	$_SESSION["success"] = "Deslogado com sucesso, sentirei saudade.";
+	header("Location: index.php");
+	
